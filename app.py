@@ -9,13 +9,28 @@ def calculate_bmi(weight, height):
     bmi = weight / (height_in_meters ** 2)
     return round(bmi, 2)
 
-def calculate_bmr(age, weight, height, gender):
+def calculate_bmr(age, weight, height, gender, activity_level):
     if gender.lower() == 'male':
         bmr = 66.5 + (13.75 * weight) + (5 * height) - (6.75 * age)
     elif gender.lower() == 'female':
         bmr = 655.1 + (9.563 * weight) + (1.85 * height) - (4.676 * age)
     else:
         raise ValueError("Invalid gender")
+
+    # Adjust BMR based on activity level
+    activity_multipliers = {
+        'sedentary': 1.2,
+        'light': 1.375,
+        'moderate': 1.55,
+        'active': 1.725,
+        'extra_active': 1.9
+    }
+
+    if activity_level.lower() in activity_multipliers:
+        bmr *= activity_multipliers[activity_level.lower()]
+    else:
+        raise ValueError("Invalid activity level")
+
     return round(bmr, 2)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -28,7 +43,7 @@ def index():
         gender = request.form['gender']
 
         bmi = calculate_bmi(weight, height)
-        bmr = calculate_bmr(age, weight, height, gender)
+        bmr = calculate_bmr(age, weight, height, gender , activity_level)
 
         health_conditions = ["cardiac"]
         calorie_intake = request.form.get('calorie_intake')

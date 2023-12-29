@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Food Recommendation System</h1>
+    <form method="post">
+        <label for="age">Age:</label>
+        <input type="number" name="age" required><br>
+
+        <label for="height">Height (in CM):</label>
+        <input type="number" name="height" required><br>
+
+        <label for="weight">Weight:</label>
+        <input type="number" name="weight" required><br>
+
+        <label for="activity_level">Activity Level:</label>
+        <select name="activity_level" required>
+            <option value="sedentary">Sedentary</option>
+            <option value="light">Light activity</option>
+            <option value="moderate">Moderately active</option>
+            <option value="active">Very active</option>
+        </select><br>
+
+        <button type="submit">Get Recommendations</button>
+    </form>
+
+    {% if recommended_foods %}
+        <h2>Recommended Foods:</h2>
+        <ul>
+            {% for food in recommended_foods %}
+                <li>{{ food }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

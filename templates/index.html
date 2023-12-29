@@ -7,16 +7,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Food Recommendation System</h1>
-    <form method="post">
+
+<div class="container">
+    <h1 class="main-heading">Food Recommendation System</h1>
+    <form class="user-form" method="post">
         <label for="age">Age:</label>
-        <input type="number" name="age" required><br>
+        <input type="number" name="age" required>
 
         <label for="height">Height (in CM):</label>
-        <input type="number" name="height" required><br>
+        <input type="number" name="height" required>
 
         <label for="weight">Weight:</label>
-        <input type="number" name="weight" required><br>
+        <input type="number" name="weight" required>
+
+        <label for="gender">Gender:</label>
+        <select name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
 
         <label for="activity_level">Activity Level:</label>
         <select name="activity_level" required>
@@ -24,18 +32,33 @@
             <option value="light">Light activity</option>
             <option value="moderate">Moderately active</option>
             <option value="active">Very active</option>
-        </select><br>
+        </select>
 
-        <button type="submit">Get Recommendations</button>
+        <label for="calorie_intake">Daily Calorie Intake:</label>
+        <input type="number" name="calorie_intake" placeholder="Optional">
+
+        <button type="submit" class="submit-button">Get Recommendations</button>
     </form>
 
+    {% if bmi and bmr %}
+        <p class="result">BMI: {{ bmi }}</p>
+        <p class="result">BMR: {{ bmr }} calories/day</p>
+    {% endif %}
+
     {% if recommended_foods %}
-        <h2>Recommended Foods:</h2>
-        <ul>
+        <h2 class="sub-heading">Recommended Foods:</h2>
+        <ul class="food-list">
             {% for food in recommended_foods %}
-                <li>{{ food }}</li>
+                <li class="food-item">
+                    <span class="food-name">{{ food['food'] }}</span>
+                    <span class="food-calories">{{ food['calories'] }} Calories</span>
+                </li>
             {% endfor %}
         </ul>
     {% endif %}
+
+   
+</div>
+
 </body>
 </html>

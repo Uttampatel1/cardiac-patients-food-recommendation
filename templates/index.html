@@ -45,19 +45,38 @@
         <p class="result">BMR: {{ bmr }} calories/day</p>
     {% endif %}
 
-    {% if recommended_foods %}
-        <h2 class="sub-heading">Recommended Foods:</h2>
-        <ul class="food-list">
-            {% for food in recommended_foods %}
-                <li class="food-item">
-                    <span class="food-name">{{ food['food'] }}</span>
-                    <span class="food-calories">{{ food['calories'] }} Calories</span>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <h2 class="sub-heading">Recommended Foods</h2>
+    
+    <h3 class="meal-heading">Breakfast</h3>
+    <ul class="food-list">
+        {% for food in recommended_breakfast %}
+            <li class="food-item">
+                <span class="food-name">{{ food['food'] }}</span>
+                <span class="food-calories">{{ food['calories'] }} Calories</span>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <h3 class="meal-heading">Lunch</h3>
+    <ul class="food-list">
+        {% for food in recommended_lunch %}
+            <li class="food-item">
+                <span class="food-name">{{ food['food'] }}</span>
+                <span class="food-calories">{{ food['calories'] }} Calories</span>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <h3 class="meal-heading">Dinner</h3>
+    <ul class="food-list">
+        {% for food in recommended_dinner %}
+            <li class="food-item">
+                <span class="food-name">{{ food['food'] }}</span>
+                <span class="food-calories">{{ food['calories'] }} Calories</span>
+            </li>
+        {% endfor %}
+    </ul>
 
-   
 </div>
 
 </body>

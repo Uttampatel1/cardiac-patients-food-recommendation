@@ -3,42 +3,78 @@ class FoodRecommendationSystem:
         self.recommended_foods = []
 
     def recommend_food(self, health_conditions, bmi=None, bmr=None, calorie_intake=None):
-        self.recommended_foods = []
+        recommended_breakfast = []
+        recommended_lunch = []
+        recommended_dinner = []
 
         # Rule-based recommendations based on health conditions, BMI, and BMR
         if "cardiac" in health_conditions:
-            self.recommended_foods.extend(self.limit_saturated_and_trans_fats())
-            self.recommended_foods.extend(self.emphasize_whole_grains())
-            self.recommended_foods.extend(self.encourage_fruits_and_vegetables())
-            self.recommended_foods.extend(self.control_sodium_intake())
-            self.recommended_foods.extend(self.monitor_cholesterol())
-            self.recommended_foods.extend(self.control_portion_sizes())
+            # Recommendations for Breakfast
+            recommended_breakfast.extend(self.limit_saturated_and_trans_fats())
+            recommended_breakfast.extend(self.emphasize_whole_grains())
+            recommended_breakfast.extend(self.encourage_fruits_and_vegetables())
+            recommended_breakfast.extend(self.control_sodium_intake())
+            recommended_breakfast.extend(self.monitor_cholesterol())
+            recommended_breakfast.extend(self.control_portion_sizes())
+
+            # Recommendations for Lunch
+            recommended_lunch.extend(self.limit_saturated_and_trans_fats())
+            recommended_lunch.extend(self.emphasize_whole_grains())
+            recommended_lunch.extend(self.encourage_fruits_and_vegetables())
+            recommended_lunch.extend(self.control_sodium_intake())
+            recommended_lunch.extend(self.monitor_cholesterol())
+            recommended_lunch.extend(self.control_portion_sizes())
+
+            # Recommendations for Dinner
+            recommended_dinner.extend(self.limit_saturated_and_trans_fats())
+            recommended_dinner.extend(self.emphasize_whole_grains())
+            recommended_dinner.extend(self.encourage_fruits_and_vegetables())
+            recommended_dinner.extend(self.control_sodium_intake())
+            recommended_dinner.extend(self.monitor_cholesterol())
+            recommended_dinner.extend(self.control_portion_sizes())
 
         # Additional recommendations based on BMI and BMR
         if bmi:
             if bmi < 18.5:
-                self.recommended_foods.extend(self.high_calorie_foods())
+                # Recommendations for Breakfast
+                recommended_breakfast.extend(self.high_calorie_foods())
             elif 18.5 <= bmi <= 24.9:
-                self.recommended_foods.extend(self.balanced_diet_foods())
+                # Recommendations for Breakfast
+                recommended_breakfast.extend(self.balanced_diet_foods())
 
         if bmr:
             if bmr < 1500:
-                self.recommended_foods.extend(self.low_calorie_foods())
+                # Recommendations for Lunch
+                recommended_lunch.extend(self.low_calorie_foods())
             elif 1500 <= bmr <= 2000:
-                self.recommended_foods.extend(self.moderate_calorie_foods())
+                # Recommendations for Lunch
+                recommended_lunch.extend(self.moderate_calorie_foods())
             elif bmr > 2000:
-                self.recommended_foods.extend(self.high_calorie_foods())
+                # Recommendations for Lunch
+                recommended_lunch.extend(self.high_calorie_foods())
 
         # Additional recommendations based on calorie intake
         if calorie_intake:
             if calorie_intake < 1500:
-                self.recommended_foods.extend(self.low_calorie_foods())
+                # Recommendations for Dinner
+                recommended_dinner.extend(self.low_calorie_foods())
             elif 1500 <= calorie_intake <= 2000:
-                self.recommended_foods.extend(self.moderate_calorie_foods())
+                # Recommendations for Dinner
+                recommended_dinner.extend(self.moderate_calorie_foods())
             elif calorie_intake > 2000:
-                self.recommended_foods.extend(self.high_calorie_foods())
+                # Recommendations for Dinner
+                recommended_dinner.extend(self.high_calorie_foods())
 
-        return self.recommended_foods
+        return recommended_breakfast, recommended_lunch, recommended_dinner
+
+    def balanced_diet_foods(self):
+        # Example: Balanced diet foods
+        return [
+            {"food": "Balanced Food1", "calories": 120},
+            {"food": "Balanced Food2", "calories": 150},
+            {"food": "Balanced Food3", "calories": 180},
+        ]
+
 
     def limit_saturated_and_trans_fats(self):
         return [
@@ -107,3 +143,4 @@ class FoodRecommendationSystem:
             {"food": "Muthiya", "calories": 160},
             {"food": "Gujarati Kadhi", "calories": 190},
         ]
+        

@@ -45,6 +45,8 @@
         <p class="result">BMR: {{ bmr }} calories/day</p>
     {% endif %}
 
+    {% if recommended_breakfast and recommended_lunch %}
+
     <h2 class="sub-heading">Recommended Foods</h2>
     
     <h3 class="meal-heading">Breakfast</h3>
@@ -76,6 +78,7 @@
             </li>
         {% endfor %}
     </ul>
+    {% endif %}
 
 </div>
 

@@ -1,3 +1,5 @@
+import random
+
 class FoodRecommendationSystem:
     def __init__(self):
         self.recommended_foods = []
@@ -64,8 +66,14 @@ class FoodRecommendationSystem:
             elif calorie_intake > 2000:
                 # Recommendations for Dinner
                 recommended_dinner.extend(self.high_calorie_foods())
+                
+                # random.sample(self.recommended_foods, min(3, len(self.recommended_foods)))
+                
+        recommended_breakfast = random.sample(recommended_breakfast , min(3, len(recommended_breakfast)))
+        recommended_lunch = random.sample(recommended_lunch , min(6, len(recommended_lunch)))
+        recommended_dinner = random.sample(recommended_dinner , min(7, len(recommended_dinner)))
 
-        return recommended_breakfast, recommended_lunch, recommended_dinner
+        return recommended_breakfast , recommended_lunch, recommended_dinner
 
     def balanced_diet_foods(self):
         # Example: Balanced diet foods

@@ -96,5 +96,3 @@ if __name__ == '__main__':
 
     print("*"*50 , f"Total Recommended {t_d + t_b + t_l} calories" , "*"*50)
 
-
-

@@ -46,8 +46,8 @@ def index():
         bmi = calculate_bmi(weight, height)
         bmr = calculate_bmr(age, weight, height, gender , activity_level)
 
-        health_conditions = ["cardiac"]
-        calorie_intake = request.form.get('calorie_intake')
+        # health_conditions = ["cardiac"]
+        # calorie_intake = request.form.get('calorie_intake')
 
         recommended_breakfast, recommended_lunch, recommended_dinner = recommend_food(bmr)
         

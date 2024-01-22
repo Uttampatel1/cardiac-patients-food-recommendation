@@ -64,18 +64,37 @@ def recommend_food(calorie_limit):
 
     return selected_foods_breakfast, selected_foods_lunch, selected_foods_dinner
 
+if __name__ == '__main__':
 
-daily_calorie_limit = 1500
-recommended_foods_breakfast, recommended_foods_lunch, recommended_foods_dinner = recommend_food(daily_calorie_limit)
+    daily_calorie_limit = 1500
+    recommended_foods_breakfast, recommended_foods_lunch, recommended_foods_dinner = recommend_food(daily_calorie_limit)
 
-print("Recommended foods for Breakfast:")
-for food, calories in recommended_foods_breakfast:
-    print(f"{food}: {calories} calories")
+    t_b = 0
+    print("Recommended foods for Breakfast:")
+    for food, calories in recommended_foods_breakfast:
+        t_b += calories
+        print(f"{food}: {calories} calories")
+    print("-"*50 , f"Total Breakfast Recommended {t_b} calories" , "-"*50)
+    print()
 
-print("\nRecommended foods for Lunch:")
-for food, calories in recommended_foods_lunch:
-    print(f"{food}: {calories} calories")
+    t_l = 0
+    print("\nRecommended foods for Lunch:")
+    for food, calories in recommended_foods_lunch:
+        t_l += calories
+        print(f"{food}: {calories} calories")
+    print("-"*50 , f"Total Lunch Recommended {t_l} calories" , "-"*50)
 
-print("\nRecommended foods for Dinner:")
-for food, calories in recommended_foods_dinner:
-    print(f"{food}: {calories} calories")
+    print()
+
+    t_d = 0
+    print("\nRecommended foods for Dinner:")
+    for food, calories in recommended_foods_dinner:
+        t_d += calories
+        print(f"{food}: {calories} calories")
+    print("-"*50 , f"Total Dinner Recommended {t_d} calories" , "-"*50)
+
+
+    print("*"*50 , f"Total Recommended {t_d + t_b + t_l} calories" , "*"*50)
+
+
+

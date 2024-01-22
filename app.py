@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from food_recommendation_system import FoodRecommendationSystem
+from food_rand import recommend_food
 
 app = Flask(__name__)
 recommendation_system = FoodRecommendationSystem()
@@ -48,14 +49,22 @@ def index():
         health_conditions = ["cardiac"]
         calorie_intake = request.form.get('calorie_intake')
 
-        recommended_breakfast, recommended_lunch, recommended_dinner = recommendation_system.recommend_food(
-            health_conditions, bmi, bmr, calorie_intake)
+        recommended_breakfast, recommended_lunch, recommended_dinner = recommend_food(bmr)
+        
+        
+        t_b = sum([calories for food, calories in recommended_breakfast])
+        t_l = sum([calories for food, calories in recommended_lunch])
+        t_d = sum([calories for food, calories in recommended_dinner])
+      
+
+
+        print("*"*50 , f"Total Recommended {t_d + t_b + t_l} calories" , "*"*50)
 
         return render_template('index.html', 
                                recommended_breakfast=recommended_breakfast, 
                                recommended_lunch=recommended_lunch, 
                                recommended_dinner=recommended_dinner,
-                               bmi=bmi, bmr=bmr)
+                               bmi=bmi, bmr=bmr, t_b = t_b , t_l = t_l , t_d= t_d)
 
     return render_template('index.html', 
                            recommended_breakfast=None, 

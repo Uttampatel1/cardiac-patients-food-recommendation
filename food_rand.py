@@ -14,9 +14,14 @@ def recommend_food(calorie_limit):
     remaining_calories_lunch = int(calorie_limit * 0.3)
     remaining_calories_dinner = int(calorie_limit * 0.3)
 
+    i = 0
     while remaining_calories_breakfast > 0:
         # Choose a random food table
-        table_name = random.choice(list(food_tables.keys()))
+        if i < 2:
+            table_name = list(food_tables.keys())[14]
+            i+=1
+        else:
+            table_name = random.choice(list(food_tables.keys()))
         table = food_tables[table_name]
         
         if list(table.values())[0][0][5] == 1:
@@ -29,24 +34,38 @@ def recommend_food(calorie_limit):
             # if abs(remaining_calories_breakfast - food_calories) in range(50):
             selected_foods_breakfast.append((food_name, food_calories))
             remaining_calories_breakfast -= food_calories
-            
+    
+    i = 0       
     while remaining_calories_lunch > 0:
         # Choose a random food table
-        table_name = random.choice(list(food_tables.keys()))
+        if i < 1:
+            table_name = list(food_tables.keys())[0]
+            i+=1
+        else:
+            table_name = random.choice(list(food_tables.keys()))
         table = food_tables[table_name]
         
         if list(table.values())[0][0][6] == 1:
             # Choose a random food item from the selected table
             food_name = random.choice(list(table.keys()))
             
-            food_calories = table[food_name][0][4]
+            if food_name != "Plain Steamed Rice (1 Small Bowl)":
+                food_calories = table[food_name][0][4]
 
-            # Check if adding the food exceeds the remaining calories
-            # if abs(remaining_calories_breakfast - food_calories) in range(50):
-            selected_foods_lunch.append((food_name, food_calories))
-            remaining_calories_lunch -= food_calories
-            
+                # Check if adding the food exceeds the remaining calories
+                # if abs(remaining_calories_breakfast - food_calories) in range(50):
+                selected_foods_lunch.append((food_name, food_calories))
+                remaining_calories_lunch -= food_calories
+    
+    i = 0      
     while remaining_calories_dinner > 0:
+        if i < 1:
+            table_name = list(food_tables.keys())[0]
+            table = food_tables[table_name]
+            i+=1
+        else:
+            table_name = random.choice(list(food_tables.keys()))
+            table = food_tables[table_name]
         # Choose a random food table
         table_name = random.choice(list(food_tables.keys()))
         table = food_tables[table_name]
@@ -55,12 +74,13 @@ def recommend_food(calorie_limit):
             # Choose a random food item from the selected table
             food_name = random.choice(list(table.keys()))
             
-            food_calories = table[food_name][0][4]
+            if food_name != "Plain Steamed Rice (1 Small Bowl)":
+                food_calories = table[food_name][0][4]
 
-            # Check if adding the food exceeds the remaining calories
-            # if abs(remaining_calories_breakfast - food_calories) in range(50):
-            selected_foods_dinner.append((food_name, food_calories))
-            remaining_calories_dinner -= food_calories
+                # Check if adding the food exceeds the remaining calories
+                # if abs(remaining_calories_breakfast - food_calories) in range(50):
+                selected_foods_dinner.append((food_name, food_calories))
+                remaining_calories_dinner -= food_calories
 
     return selected_foods_breakfast, selected_foods_lunch, selected_foods_dinner
 

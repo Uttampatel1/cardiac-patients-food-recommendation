@@ -9,7 +9,7 @@ fake = Faker()
 # Generate synthetic face dataset with random daily calorie limits
 face_dataset = []
 
-for _ in range(100000):  # Generate data for 100 individuals
+for _ in range(100):  # Generate data for 100 individuals
     daily_calorie_limit = fake.random_int(min=1200, max=2500)
     recommended_foods_breakfast, recommended_foods_lunch, recommended_foods_dinner = recommend_food(daily_calorie_limit)
     age = fake.random_int(min=18, max=99)
@@ -42,4 +42,4 @@ for _ in range(100000):  # Generate data for 100 individuals
 df = pd.DataFrame(face_dataset)
 
 # Save DataFrame to CSV
-df.to_csv('data/rad_food_dataset.csv', index=False)
+df.to_csv('data/temp_food_dataset.csv', index=False)

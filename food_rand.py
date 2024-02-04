@@ -6,6 +6,7 @@ with open('/workspaces/codespaces-blank/data/food_Info.pkl', 'rb') as f:
     
 
 def recommend_food(calorie_limit):
+    food_names = []
     selected_foods_breakfast = []
     selected_foods_lunch = []
     selected_foods_dinner = []
@@ -32,8 +33,14 @@ def recommend_food(calorie_limit):
 
             # Check if adding the food exceeds the remaining calories
             # if abs(remaining_calories_breakfast - food_calories) in range(50):
-            selected_foods_breakfast.append((food_name, food_calories))
-            remaining_calories_breakfast -= food_calories
+            if food_name not in food_names:
+                selected_foods_breakfast.append((food_name, food_calories))
+                remaining_calories_breakfast -= food_calories
+                food_names.append(food_name)
+                print("ADD food ", food_name)
+                
+            else:
+                print("not food ", food_name)
     
     i = 0       
     while remaining_calories_lunch > 0:
@@ -54,9 +61,12 @@ def recommend_food(calorie_limit):
 
                 # Check if adding the food exceeds the remaining calories
                 # if abs(remaining_calories_breakfast - food_calories) in range(50):
-                selected_foods_lunch.append((food_name, food_calories))
-                remaining_calories_lunch -= food_calories
-    
+                if food_name not in food_names:
+                    selected_foods_lunch.append((food_name, food_calories))
+                    remaining_calories_lunch -= food_calories
+                    food_names.append(food_name)
+                    
+        
     i = 0      
     while remaining_calories_dinner > 0:
         if i < 1:
@@ -79,8 +89,11 @@ def recommend_food(calorie_limit):
 
                 # Check if adding the food exceeds the remaining calories
                 # if abs(remaining_calories_breakfast - food_calories) in range(50):
-                selected_foods_dinner.append((food_name, food_calories))
-                remaining_calories_dinner -= food_calories
+                if food_name not in food_names:
+                    selected_foods_dinner.append((food_name, food_calories))
+                    remaining_calories_dinner -= food_calories
+                    food_names.append(food_name)
+                    
 
     return selected_foods_breakfast, selected_foods_lunch, selected_foods_dinner
 

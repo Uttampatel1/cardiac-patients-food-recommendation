@@ -1,7 +1,7 @@
 import pickle 
 import random
 
-with open('/workspaces/codespaces-blank/data/food_Info.pkl', 'rb') as f:
+with open('data/food_Info.pkl', 'rb') as f:
     food_tables = pickle.load(f)
     
 
